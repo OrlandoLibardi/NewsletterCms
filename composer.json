@@ -1,0 +1,33 @@
+{
+    "name": "orlandolibardi/newslettercms",
+    "description": "Modulo para Newsletter",
+    "type": "module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Orlando Libardi",
+            "email": "orlando.libardi@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "orlandolibardi/admincms": "dev-master",
+        "orlandolibardi/filescms" : "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "OrlandoLibardi\\NewsletterCms\\": "./"        
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OrlandoLibardi\\NewsletterCms\\app\\Providers\\OlCmsNewsletterServiceProvider",
+                "OrlandoLibardi\\NewsletterCms\\app\\Providers\\OlCmsNewsletterviewServiceProvider"
+            ],
+            "aliases": {
+                "OlCmsNewsletter": "OrlandoLibardi\\NewsletterCms\\app\\Providers\\OlCmsNewsletter"
+            } 
+        }
+    }
+}
