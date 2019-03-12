@@ -25,14 +25,14 @@ class NewsletterRequest extends FormRequest
         switch($this->method()){
             case 'POST':
                 $rules = [
-                    'titulo' => 'required|string|max:255',
+                    'title' => 'required|string|max:255',
                     'description' => 'nullable|string|max:255'
                     ];   
             break;    
             case 'PUT':
             case 'PATCH':
                 $rules = [
-                    'titulo' => 'required|string|max:255',
+                    'title' => 'required|string|max:255',
                     'description' => 'nullable|string|max:255'
                     ]; 
             break;

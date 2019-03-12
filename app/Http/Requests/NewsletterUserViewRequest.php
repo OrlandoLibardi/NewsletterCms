@@ -1,0 +1,44 @@
+<?php
+
+namespace OrlandoLibardi\NewsletterCms\app\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
+
+class NewsletterUserViewRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        //nullable|
+        return [
+            'user' => 'required_without:email|exists:newsletter_users,id',
+            'email' => 'required_without:user|exists:newsletter_users,email'
+            ];
+
+    }
+    /**
+     *  
+     */
+    protected function failedValidation(Validator $validator) 
+    {
+        throw new HttpResponseException(response()->json($validator->errors(),422));
+    }
+
+}

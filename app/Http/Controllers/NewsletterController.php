@@ -48,7 +48,7 @@ class NewsletterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $newsletter )
+    public function edit( $id )
     {
         $newsletter = Newsletter::find($id);
         return view('admin.newsletter.index', compact('newsletter'));
@@ -78,7 +78,7 @@ class NewsletterController extends Controller
 
         return response()
                 ->json(array(
-                    'message' => __('messages.update_success'), 
+                    'message' => __('messages.destroy_success'), 
                     'status'  =>  'success'), 
                 201);
     }

@@ -11,7 +11,7 @@ use OrlandoLibardi\NewsletterCms\app\Newsletter;
 use OrlandoLibardi\NewsletterCms\app\Http\Requests\NewsletterUserRequest;
 
 use OrlandoLibardi\NewsletterCms\app\ServiceDownload;
-
+//use App\Notifications\NewsletterConfirm;
 
 class NewsletterUserController extends Controller
 {
@@ -27,9 +27,10 @@ class NewsletterUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id) 
+    public function index(Request $request) 
     {
-        $newsletter = Newsletter::find($id);
+        $newsletter = Newsletter::find($request->id);
+        
         return view('admin.newsletter.user.index', compact('newsletter'));
     }
     /**
@@ -55,7 +56,7 @@ class NewsletterUserController extends Controller
 
         return response()
                 ->json(array(
-                    'message' => __('messages.update_success'), 
+                    'message' => __('messages.destroy_success'), 
                     'status'  =>  'success'), 
                 201);
     }

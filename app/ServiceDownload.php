@@ -2,7 +2,7 @@
 
 namespace OrlandoLibardi\NewsletterCms\app;
 
-use Excel;
+use OrlandoLibardi\NewsletterCms\app\SampleCSV;
 use OrlandoLibardi\NewsletterCms\app\NewsletterUser;
 
 class ServiceDownload
@@ -31,7 +31,8 @@ class ServiceDownload
     public static function setFileName($data)
     {
         if(!$data) return false;
-        return $data->title . ' - ' . sha1(time());
+        $time = \Carbon\Carbon::now()->format('Y_m_d_H_i');
+        return $time . '_' . str_slug($data->title);
     }
     /**
      * 
@@ -39,23 +40,15 @@ class ServiceDownload
     public static function getList($data)
     {   
         if(!$data) return false;
-        return $data->registereds->toArray();
+        return $data->registereds;
     }
     /**
      * 
      */
-    public function download($file_name, $items)
+    public static function download($file_name, $items)
     {
-        return Excel::create($file_name, 
-                    function($excel) use ($items) 
-                    {
-                        $excel->sheet('Users', 
-                            function($sheet) use ($items) {
-                                $sheet->fromArray($items);
-                            }
-                        );
-                    }
-               )->download('csv');
+        return SampleCSV::create($file_name, $items);
+        
     }
 }
 

@@ -3,6 +3,7 @@
 namespace OrlandoLibardi\NewsletterCms\app\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use OrlandoLibardi\NewsletterCms\app\Rules\NewsletterUserEmail;
 
 class NewsletterUserRequest extends FormRequest
 {
@@ -26,19 +27,19 @@ class NewsletterUserRequest extends FormRequest
             case 'POST':
                 $rules = [
                     'newsletter_id' => 'required|exists:newsletters,id',
-                    'email' => ['required', new NewsletterUserEmail($request->newsletter_id) ],
+                    'email' => ['required', new NewsletterUserEmail($this->newsletter_id) ],
                     ];   
             break;    
             case 'PUT':
             case 'PATCH':
                 $rules = [
                     'newsletter_id' => 'required|exists:newsletters,id',
-                    'email' => ['required', new NewsletterUserEmail($request->newsletter_id) ],
+                    'email' => ['required', new NewsletterUserEmail($this->newsletter_id) ],
                     ]; 
             break;
             case 'DELETE':
                 $rules = [
-                    'id.*' => 'required|exists:newsletters,id' 
+                    'id.*' => 'required|exists:newsletter_users,id' 
                 ];
             break;
             default:
