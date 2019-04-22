@@ -35,6 +35,7 @@ class OlCmsNewsletterServiceProvider extends ServiceProvider
             __DIR__.'/../../database/migrations/' => database_path('migrations/'),
             __DIR__.'/../../resources/views/admin/' => resource_path('views/admin/'),
             __DIR__.'/../../resources/views/website/' => resource_path('views/website/'), 
+            __DIR__.'/../../resources/views/emails/' => resource_path('views/emails/'), 
             __DIR__.'/../../database/seeds/' => database_path('seeds'),
             __DIR__.'/../../config/newsletter.php' => config_path('newsletter.php'),
         ],'config');
