@@ -15,7 +15,7 @@ class OlCmsNewsletterBuilder
         $this->config = config('newsletter');
     }
 
-    public function show($list=false)
+    public function form($list=false)
     {
         if(!$list) return false;
         return view($this->config['newsletter_form'], compact('list'));
